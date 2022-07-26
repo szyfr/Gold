@@ -14,7 +14,7 @@ for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (
    set /A "start=(((%%a*60)+1%%b %% 100)*60+1%%c %% 100)*100+1%%d %% 100"
 )
 
-go build -o target/debug/%date%/main.exe src/main.go
+go build -o target/debug/%date%/main.exe C:\Users\Szyfr\Desktop\GoTest\src\
 
 rem Get end time:
 for /F "tokens=1-4 delims=:.," %%a in ("%time%") do (

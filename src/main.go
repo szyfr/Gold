@@ -1,63 +1,39 @@
 package main
 
+
 import (
-	"fmt"
-	_ "github.com/go-gl/gl/v4.1-core/gl"
+	_ "fmt"
+	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/veandco/go-sdl2/sdl"
 )
 
-const (
-	SCREEN_HEIGHT = 480
-	SCREEN_WIDTH  = 640
-)
-
-var sdlWindow  *sdl.Window;
-var sdlSurface *sdl.Surface;
 
 func main() {
-	init_sdl2();
+	initialize_program();
 
-	sdlSurface, _ := sdlWindow.GetSurface();
-	fmt.Printf("%p\n",sdlSurface);
+//	rect := sdl.Rect{0,0,56,56};
+//	program.testImage.Blit(&rect, program.sdlSurface, &rect);
 
-	rect := sdl.Rect{50,50,200,200};
-	sdlSurface.FillRect(&rect, 0xffff00ff);
-	sdlWindow.UpdateSurface();
+	program.sdlWindow.UpdateSurface();
 
-	running := true;
-	for running {
-		for event := sdl.PollEvent(); event != nil; event = sdl.PollEvent() {
-			switch event.(type) {
-			case *sdl.QuitEvent:
-				println("quit");
-				running = false;
-				break;
-			}
-		}
+	for program.running {
+		event_polling();
 	}
 
-	fmt.Printf("%p\n",sdlSurface);
-
-	sdlWindow.Destroy();
+	program.sdlWindow.Destroy();
 	sdl.Quit();
 }
 
-func init_sdl2() {
-	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil { panic(err); }
 
-	tempWindow, err := sdl.CreateWindow(
-		"SDL Testing",
-		sdl.WINDOWPOS_UNDEFINED,
-		sdl.WINDOWPOS_UNDEFINED,
-		SCREEN_WIDTH, SCREEN_HEIGHT,
-		sdl.WINDOW_SHOWN,
-	);
-	if err != nil { panic(err); }
+func initialize_program() {
+	program            = ProgramData{};
+	program.sdlWindow  = init_sdl2();
+	program.sdlSurface = get_surface(program.sdlWindow);
+	program.running    = true;
 
-	tempSurface, _ := sdlWindow.GetSurface();
-	fmt.Printf("%p\n",tempSurface);
-//	if err != nil { panic(err); }
+//	program.testImage  = load_media("data/TheBoi.bmp");
 
-	sdlWindow  = tempWindow;
-	sdlSurface = tempSurface;
+//	if err := gl.Init(); err != nil { panic(err); }
+
+
 }
