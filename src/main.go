@@ -2,7 +2,7 @@ package main
 
 
 import (
-	_ "fmt"
+	"fmt"
 	"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/veandco/go-sdl2/sdl"
 )
@@ -33,7 +33,8 @@ func initialize_program() {
 
 //	program.testImage  = load_media("data/TheBoi.bmp");
 
-//	if err := gl.Init(); err != nil { panic(err); }
-
+	if err  := gl.Init(); err != nil { panic(err); }
+	version := gl.GoStr(gl.GetString(gl.VERSION));
+	fmt.Printf("OpenGL version: %s", version);
 
 }
