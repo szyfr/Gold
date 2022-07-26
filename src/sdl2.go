@@ -9,11 +9,13 @@ import (
 func init_sdl2() *sdl.Window {
 	if err := sdl.Init(sdl.INIT_EVERYTHING); err != nil { panic(err); }
 
+//	sdl.GLSetAttribute(sdl., 5);
+
 	tempWindow, err := sdl.CreateWindow(
 		WINDOW_NAME,
 		sdl.WINDOWPOS_UNDEFINED,
 		sdl.WINDOWPOS_UNDEFINED,
-		SCREEN_WIDTH, SCREEN_HEIGHT,
+		program.windowWidth, program.windowHeight,
 		sdl.WINDOW_SHOWN,
 	);
 	if err != nil { panic(err); }
