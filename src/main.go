@@ -2,6 +2,7 @@ package main
 
 
 import (
+	"runtime"
 	_"fmt"
 	_"github.com/go-gl/gl/v4.1-core/gl"
 	"github.com/veandco/go-sdl2/sdl"
@@ -9,6 +10,7 @@ import (
 
 
 func main() {
+	runtime.LockOSThread();
 	initialize_program();
 
 //	rect := sdl.Rect{0,0,56,56};
@@ -32,6 +34,8 @@ func initialize_program() {
 	program.sdlWindow    = init_sdl2();
 	program.sdlSurface   = get_surface(program.sdlWindow);
 	program.running      = true;
+
+	init_opengl();
 
 //	program.testImage  = load_media("data/TheBoi.bmp");
 	
