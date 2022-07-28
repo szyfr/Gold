@@ -3,7 +3,7 @@ package main
 
 import (
 	_"github.com/go-gl/gl/v4.1-core/gl"
-	"github.com/veandco/go-sdl2/sdl"
+	"github.com/go-gl/glfw/v3.2/glfw"
 )
 
 
@@ -20,17 +20,14 @@ type ProgramData struct {
 	// General
 	windowHeight int32;
 	windowWidth  int32;
-	running      bool;
 
-	// SDL2
-	sdlWindow    *sdl.Window;
-	sdlSurface   *sdl.Surface;
+	// GLFW
+	glfwWindow    *glfw.Window;
+//	glfwSurface   *glfw.Surface;
 
 	// OpenGL
-	glContext  sdl.GLContext;
-	programID  uint32;
+	program    uint32;
 	vertShader uint32;
 	fragShader uint32;
 
-//	testImage  *sdl.Surface;
 }
