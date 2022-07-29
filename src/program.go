@@ -26,8 +26,6 @@ type ProgramData struct {
 	// OpenGL
 	programID  uint32;
 	vao        uint32;
-	vertShader uint32;
-	fragShader uint32;
 
 }
 
@@ -39,7 +37,7 @@ func initialize_gold() {
 	program.windowHeight =  720;
 	program.windowWidth  = 1280;
 
-	program.init_glfw();
+	program.glfwWindow   = init_glfw();
 
 	program.programID    = init_opengl();
 	program.vao          = make_vao(triangle);

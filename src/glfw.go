@@ -7,7 +7,7 @@ import (
 )
 
 
-func (prg *ProgramData) init_glfw() {
+func init_glfw() *glfw.Window {
 	if err := glfw.Init(); err != nil { panic(err); }
 
 	glfw.WindowHint(glfw.Resizable, glfw.False);
@@ -24,5 +24,5 @@ func (prg *ProgramData) init_glfw() {
 
 	window.MakeContextCurrent();
 
-	prg.glfwWindow = window;
+	return window;
 }

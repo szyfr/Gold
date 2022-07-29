@@ -9,11 +9,23 @@ import (
 
 
 func init_opengl() uint32 {
+	// Initialize
 	if err  := gl.Init(); err != nil { panic(err); }
 	version := gl.GoStr(gl.GetString(gl.VERSION));
 	fmt.Printf("OpenGL version %s\n", version);
 
+	// Vertex shader
+	vertexShader, err   := compile_shader(vertexShaderSource, gl.VERTEX_SHADER);
+	if err != nil { panic(err); }
+
+	// Fragment shader
+	fragmentShader, err := compile_shader(fragmentShaderSource, gl.FRAGMENT_SHADER);
+	if err != nil { panic(err); }
+
+	// Linking Program
 	prog := gl.CreateProgram();
+	gl.AttachShader(prog, vertexShader);
+	gl.AttachShader(prog, fragmentShader);
 	gl.LinkProgram(prog);
 	return prog;
 }
@@ -22,7 +34,7 @@ func make_vao(points []float32) uint32 {
 	var vbo uint32;
 	gl.GenBuffers(1, &vbo);
 	gl.BindBuffer(gl.ARRAY_BUFFER, vbo);
-	gl.BufferData(gl.ARRAY_BUFFER, 4 * len(points), gl.Ptr(points), gl.STATIC_DRAW);
+	gl.BufferData(gl.ARRAY_BUFFER, 4*len(points), gl.Ptr(points), gl.STATIC_DRAW);
 
 	var vao uint32;
 	gl.GenVertexArrays(1, &vao);
