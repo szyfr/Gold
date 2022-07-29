@@ -7,7 +7,7 @@ import (
 )
 
 
-func init_glfw() *glfw.Window {
+func (prg *ProgramData) init_glfw() {
 	if err := glfw.Init(); err != nil { panic(err); }
 
 	glfw.WindowHint(glfw.Resizable, glfw.False);
@@ -16,10 +16,13 @@ func init_glfw() *glfw.Window {
 	glfw.WindowHint(glfw.OpenGLProfile, glfw.OpenGLCoreProfile);
 	glfw.WindowHint(glfw.OpenGLForwardCompatible, glfw.True);
 
-	window, err := glfw.CreateWindow(1280, 720, WINDOW_NAME, nil, nil);
+	window, err := glfw.CreateWindow(
+		program.windowWidth, program.windowHeight,
+		"GLFW and OpenGL Testing", nil, nil,
+	);
 	if err != nil { panic(err); }
 
 	window.MakeContextCurrent();
 
-	return window;
+	prg.glfwWindow = window;
 }

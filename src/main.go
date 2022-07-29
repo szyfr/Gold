@@ -21,31 +21,11 @@ var (
 func main() {
 	runtime.LockOSThread();
 
-//	initialize_program();
-	program = ProgramData{};
-	program.windowHeight =  720;
-	program.windowWidth  = 1280;
-
-	program.glfwWindow   = init_glfw();
-	defer glfw.Terminate();
-
-	program.programID    = init_opengl();
-	program.vao          = make_vao(triangle);
+	initialize_gold();
 
 	for !program.glfwWindow.ShouldClose() {
 		draw();
 	}
-}
-
-func initialize_program() {
-	program.windowHeight =  720;
-	program.windowWidth  = 1280;
-
-	program.glfwWindow   = init_glfw();
-	defer glfw.Terminate();
-
-	program.programID    = init_opengl();
-	program.vao          = make_vao(triangle);
 }
 
 func draw() {
