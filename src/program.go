@@ -3,7 +3,7 @@ package main
 
 import (
 	_"github.com/go-gl/gl/v4.1-core/gl"
-	"github.com/go-gl/glfw/v3.2/glfw"
+	"github.com/go-gl/glfw/v3.3/glfw"
 )
 
 
@@ -26,7 +26,8 @@ type ProgramData struct {
 //	glfwSurface   *glfw.Surface;
 
 	// OpenGL
-	program    uint32;
+	programID  uint32;
+	vao        uint32;
 	vertShader uint32;
 	fragShader uint32;
 
